@@ -6,3 +6,43 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# Spring Boot prod config
+src/main/resources/application-prod.yml
+
+
+# ---- Compiled output ----
+*.class
+target/
+
+# ---- Packaging ----
+*.jar
+*.war
+*.ear
+*.nar
+
+# ---- Logs ----
+*.log
+logs/
+
+# ---- Secrets / Environment ----
+.env
+*.env
+application-local.properties
+application-prod.properties
+
+# ---- IDEs ----
+.idea/
+*.iml
+.vscode/
+*.eclipse
+.project
+.classpath
+.settings/
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Maven ----
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
