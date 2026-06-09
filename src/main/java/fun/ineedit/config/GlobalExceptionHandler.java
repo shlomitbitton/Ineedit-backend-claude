@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = "fun.ineedit.controller")
 public class GlobalExceptionHandler {
 
     record ErrorResponse(int status, String message, Instant timestamp) {}
@@ -39,6 +39,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(Exception ex) {
+        ex.printStackTrace();
         return ResponseEntity.internalServerError()
                 .body(new ErrorResponse(500, "Internal server error", Instant.now()));
     }
