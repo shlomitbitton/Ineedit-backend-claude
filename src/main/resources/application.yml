@@ -1,9 +1,15 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ineedit
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
 
   jpa:
     hibernate:
@@ -12,17 +18,31 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
+        format_sql: false
 
   jackson:
     default-property-inclusion: non_null
 
 server:
-  port: 8080
+  port: ${PORT:8080}
+  error:
+    include-stacktrace: never
+    include-message: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
 
 ineedit:
   jwt:
-    secret: ${JWT_SECRET:change-this-to-a-long-random-secret-in-production-at-least-256-bits}
-    expiration-ms: 86400000   # 24 hours
+    secret: ${JWT_SECRET}
+    expiration-ms: 86400000
+  share:
+    base-url: ${INEEDIT_SHARE_BASE_URL}
   cors:
-    allowed-origins: ${CORS_ORIGINS:http://localhost:3000,https://ineedit.fun}
+    allowed-origins: ${CORS_ORIGINS}
