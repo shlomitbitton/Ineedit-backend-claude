@@ -45,4 +45,4 @@ ineedit:
   share:
     base-url: ${INEEDIT_SHARE_BASE_URL}
   cors:
-    allowed-origins: ${CORS_ORIGINS}
+    allowed-origins: ${CORS_ORIGINS:CORS_ORIGINS}
