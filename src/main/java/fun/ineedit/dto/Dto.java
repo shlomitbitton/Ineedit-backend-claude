@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.time.Instant;
+import java.util.List;
 
 public class Dto {
 
@@ -51,5 +52,26 @@ public class Dto {
         String categoryName,
         Instant createdAt,
         Instant fulfilledAt
+    ) {}
+
+    public record ShareRequest(
+        List<Long> needIds,
+        String recipientPhone
+    ) {}
+    
+    public record ShareResponse(
+            String claimUrl
+    ) {}
+    
+    public record SharePreviewResponse(
+            String senderName,
+            List<String> needTexts,
+            boolean claimed,
+            boolean expired
+    ) {}
+    
+    public record ClaimResponse(
+            int claimedCount,
+            String categoryName
     ) {}
 }
