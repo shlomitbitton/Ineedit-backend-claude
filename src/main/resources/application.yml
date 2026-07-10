@@ -40,7 +40,7 @@ management:
 
 ineedit:
   jwt:
-    secret: ${JWT_SECRET}
+    secret: ${JWT_SECRET:JWT_SECRET}
     expiration-ms: 86400000
   share:
     base-url: ${INEEDIT_SHARE_BASE_URL:INEEDIT_SHARE_BASE_URL}
